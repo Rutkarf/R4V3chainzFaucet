@@ -1,0 +1,27 @@
+.bandeau-blockchain {
+    width: 100%;
+    min-height: 28px;
+    background: linear-gradient(90deg, #181a20 80%, #a600ff 100%);
+    color: #fff;
+    font-family: 'Orbitron', 'Inter', 'monospace', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 16px #00f0ff44, 0 1px 4px #a600ff33;
+    border-bottom: 1.5px solid #00f0ff;
+    text-shadow:
+      0 0 8px #00f0ff,
+      0 0 12px #a600ff,
+      0 0 2px #fff;
+    animation: bandeauGlow 2s infinite alternate;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+  
+  @keyframes bandeauGlow {
+    0% { box-shadow: 0 2px 16px #00f0ff44, 0 1px 4px #a600ff33; }
+    100% { box-shadow: 0 2px 32px #00f0ff88, 0 1px 8px #a600ff77; }
+  }
+  

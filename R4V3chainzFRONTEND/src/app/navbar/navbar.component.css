@@ -1,0 +1,168 @@
+/* À mettre dans styles.css pour le fond global animé */
+body {
+  background: #0a0c10;
+  min-height: 100vh;
+  color: #fff;
+  font-family: 'Orbitron', 'Inter', 'monospace', sans-serif;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Effet scanlines sur tout le site */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.01) 0px,
+    rgba(255,255,255,0.01) 1px,
+    transparent 2px,
+    transparent 4px
+  );
+  z-index: 0;
+  animation: scanlines 2s linear infinite;
+}
+
+@keyframes scanlines {
+  0% { background-position-y: 0; }
+  100% { background-position-y: 4px; }
+}
+
+/* NAVBAR CYBERPUNK */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  height: 50px;
+  background: linear-gradient(90deg, #181a20 80%, #1e005a 100%);
+  box-shadow: 0 0 24px 4px #00f0ff44, 0 2px 8px #a600ff33;
+  border-bottom: 2px solid #00f0ff;
+  position: relative;
+  z-index: 2;
+}
+
+/* Nom à gauche */
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  color: #fff;
+  text-shadow:
+    0 0 8px #00f0ff,
+    0 0 16px #a600ff,
+    0 0 2px #fff;
+  margin-right: 2rem;
+  cursor: pointer;
+  transition: text-shadow 0.3s;
+}
+
+.navbar-brand:hover {
+  text-shadow:
+    0 0 16px #00f0ff,
+    0 0 32px #a600ff,
+    0 0 4px #fff;
+}
+
+/* Groupes alignés */
+.navbar-faucet,
+.navbar-last-cashout,
+.navbar-parrainage,
+.navbar-connexion {
+  margin-left: 2rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+/* Faucet */
+.faucet-value {
+  color: #fff;
+  font-weight: bold;
+  text-shadow:
+    0 0 4px #00f0ff,
+    0 0 8px #a600ff;
+  font-size: 1.1rem;
+  margin-right: 1rem;
+  animation: flicker 2s infinite alternate;
+}
+
+@keyframes flicker {
+  0% { opacity: 1; filter: blur(0.2px);}
+  45% { opacity: 0.85; filter: blur(1px);}
+  100% { opacity: 1; filter: blur(0);}
+}
+
+/* Bouton CLAIM! */
+.claim-btn {
+  background: linear-gradient(90deg, #00f0ff 0%, #a600ff 100%);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1.2rem;
+  font-weight: bold;
+  box-shadow: 0 0 8px #00f0ff, 0 0 16px #a600ff;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.2s, background 0.2s;
+  margin-left: 1rem;
+  text-shadow: 0 0 2px #fff, 0 0 8px #a600ff;
+}
+
+.claim-btn:hover {
+  transform: scale(1.07);
+  box-shadow: 0 0 24px #00f0ff, 0 0 32px #a600ff;
+  background: linear-gradient(90deg, #a600ff 0%, #00f0ff 100%);
+}
+
+/* LastCashOut */
+.last-cashout-info {
+  color: #fff;
+  font-size: 1rem;
+  text-shadow: 0 0 4px #00f0ff, 0 0 8px #a600ff;
+  margin-left: 1rem;
+  letter-spacing: 0.5px;
+}
+
+/* Boutons parrainage et connexion */
+.parrainage-btn,
+.connexion-btn {
+  background: transparent;
+  color: #fff;
+  border: 2px solid #a600ff;
+  border-radius: 6px;
+  padding: 0.5rem 1.2rem;
+  margin-left: 1rem;
+  font-weight: bold;
+  text-shadow: 0 0 2px #fff, 0 0 8px #a600ff;
+  box-shadow: 0 0 8px #a600ff;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.parrainage-btn:hover,
+.connexion-btn:hover {
+  background: #a600ff44;
+  border-color: #00f0ff;
+  box-shadow: 0 0 16px #00f0ff, 0 0 32px #a600ff;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .navbar {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 1rem;
+  }
+  .navbar-faucet,
+  .navbar-last-cashout,
+  .navbar-parrainage,
+  .navbar-connexion {
+    margin-left: 0.5rem;
+  }
+  .navbar-brand {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+  }
+}

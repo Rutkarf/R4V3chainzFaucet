@@ -1,0 +1,24 @@
+<div class="statut-container">
+    <div class="statut-title">STATUT</div>
+    <div class="statut-row">
+      <span class="label">Online :</span>
+      <span [class.online]="online" [class.offline]="!online">
+        {{ online ? 'ONLINE' : 'OFFLINE' }}
+      </span>
+    </div>
+    <div class="statut-row">
+      <span class="label">Hauteur :</span>
+      <span>{{ hauteur }}</span>
+    </div>
+    <div class="statut-row">
+      <span class="label">TEAM :</span>
+      <span>{{ team }}</span>
+    </div>
+    <div class="statut-row">
+      <span class="label">Mempool :</span>
+      <span>{{ mempool }}</span>
+    </div>
+    <div class="statut-row">
+      <span class="label">Dernier Block EARN :</span>
+      <span>{{ dernierBlockEarn }} <small>({{ dernierBlockTime }})</small>
+  

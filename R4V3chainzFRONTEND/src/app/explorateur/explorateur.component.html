@@ -1,0 +1,16 @@
+<div class="explorateur-container">
+    <div class="explorateur-title">EXPLORATEUR</div>
+    <div class="explorateur-form">
+      <input
+        class="explorateur-input"
+        type="text"
+        [(ngModel)]="searchHash"
+        placeholder="Entrer un hash à vérifier..."
+      />
+      <button class="explorateur-btn" (click)="checkHash()">Check Hash</button>
+    </div>
+    <div *ngIf="result" class="explorateur-result">
+      {{ result }}
+    </div>
+  </div>
+  

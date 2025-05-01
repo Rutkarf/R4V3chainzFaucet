@@ -1,0 +1,12 @@
+<div class="blockchain-visu-container">
+  <div class="blockchain-scroll">
+    <div *ngFor="let block of blocks; let i = index; let last = last" class="blockchain-block">
+      <div class="block-index">#{{ i }}</div>
+      <div class="block-hash">{{ block.hash }}</div>
+      <div class="block-time">{{ block.time }}</div>
+      <div *ngIf="!last" class="blockchain-link">
+        <span class="neon-link"></span>
+      </div>
+    </div>
+  </div>
+</div>
