@@ -1,0 +1,12 @@
+<footer class="footer-content">
+    <div class="footer-main">
+      <div class="donate-section" style="display: flex; align-items: center; gap: 0.7rem;">
+        <span class="donate-label">Adresse :</span>
+        <span class="donate-address">{{ donateAddress }}</span>
+        <button class="donate-copy-btn" (click)="copyAddress()" title="Copier l'adresse">
+          📋
+        </button>
+        <span class="donate-copied" *ngIf="copied">Copié !</span>
+      </div>
+    </div>
+</footer>

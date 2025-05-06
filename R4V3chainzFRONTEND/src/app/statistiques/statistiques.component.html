@@ -1,16 +1,19 @@
-<div class="statistiques-container">
-    <div class="stat-title">STATISTIQUES</div>
-    <div class="stat-row">
-      <span class="stat-label">Blocs :</span>
-      <span class="stat-value">{{ blocs }}</span>
-    </div>
-    <div class="stat-row">
-      <span class="stat-label">Transactions :</span>
-      <span class="stat-value">{{ transactions }}</span>
-    </div>
-    <div class="stat-row">
-      <span class="stat-label">Temps/bloc :</span>
-      <span class="stat-value">{{ tempsParBloc }}</span>
-    </div>
+<div class="statistiques-container"
+     [@slideInOut]="{ value: isCollapsed ? 'collapsed' : 'expanded', params: {} }"
+     (mouseenter)="onMouseEnter()"
+     (mouseleave)="onMouseLeave()"
+     (click)="toggleCollapse()">
+  <div class="stat-title">STATISTIQUES</div>
+  <div class="stat-row">
+    <span class="stat-label">Blocs :</span>
+    <span class="stat-value">{{ blocs }}</span>
   </div>
-  
+  <div class="stat-row">
+    <span class="stat-label">Transactions :</span>
+    <span class="stat-value">{{ transactions }}</span>
+  </div>
+  <div class="stat-row">
+    <span class="stat-label">Temps/bloc :</span>
+    <span class="stat-value">{{ tempsParBloc }}</span>
+  </div>
+</div>

@@ -1,27 +1,63 @@
 .bandeau-blockchain {
-    width: 100%;
-    min-height: 28px;
-    background: linear-gradient(90deg, #181a20 80%, #a600ff 100%);
-    color: #fff;
-    font-family: 'Orbitron', 'Inter', 'monospace', sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-    letter-spacing: 1px;
-    box-shadow: 0 2px 16px #00f0ff44, 0 1px 4px #a600ff33;
-    border-bottom: 1.5px solid #00f0ff;
-    text-shadow:
-      0 0 8px #00f0ff,
-      0 0 12px #a600ff,
-      0 0 2px #fff;
-    animation: bandeauGlow 2s infinite alternate;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-  }
+  /* Propriétés communes */
+
+  margin: -0.5rem 1rem 1rem 1rem; /* Ajustement visuel */
+  width: calc(100% - 2rem); /* Compensation du padding */
   
-  @keyframes bandeauGlow {
-    0% { box-shadow: 0 2px 16px #00f0ff44, 0 1px 4px #a600ff33; }
-    100% { box-shadow: 0 2px 32px #00f0ff88, 0 1px 8px #a600ff77; }
-  }
+  width: 100%;
+  min-height: 28px;
+  color: #fff;
+  font-family: 'Orbitron', 'Inter', monospace, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  text-shadow: 
+    0 0 8px #00f0ff,
+    0 0 12px #a600ff,
+    0 0 2px #fff;
+  border-radius: 8px;
+  margin-bottom: 1rem;
   
+  /* Fusion des backgrounds */
+  background: 
+    linear-gradient(90deg, #181a20 80%, #a600ff 100%),
+    #0a0e17; /* Fallback pour les navigateurs non compatibles */
+  
+  /* Fusion des bordures */
+  border-bottom: 1.5px solid #00f0ff;
+  box-shadow: 
+    0 2px 16px #00f0ff44, 
+    0 1px 4px #a600ff33,
+    inset 0 0 12px #0a0e17; /* Ajout d'un effet de profondeur */
+  
+  /* Ajout des padding */
+  padding: 0.5rem 0;
+  
+  /* Animation combinée */
+  animation: 
+    bandeauGlow 2s infinite alternate,
+    blockchain-pulse 2s infinite;
+}
+
+@keyframes bandeauGlow {
+  0% { box-shadow: 0 2px 16px #00f0ff44, 0 1px 4px #a600ff33; }
+  100% { box-shadow: 0 2px 32px #00f0ff88, 0 1px 8px #a600ff77; }
+}
+
+.blockchain-marquee {
+  color: #00f0ff;
+  font-size: 0.9rem;
+  text-align: center;
+  text-shadow: 0 0 8px #00f0ff88;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes blockchain-pulse {
+  0% { opacity: 0.9; }
+  50% { opacity: 1; }
+  100% { opacity: 0.9; }
+}

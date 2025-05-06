@@ -1,74 +1,154 @@
+:host {
+  display: block;
+  width: 100%;
+  margin: 0;
+  position: relative;
+  box-sizing: border-box;
+}
+
 .statut-container {
+
+  /* Conserve tous les styles visuels */
+background: linear-gradient(90deg, #181a20 70%, #1e005a 100%);
+border-radius: 12px;
+/* ... autres styles ... */
+transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.3s ease-out;
+transform-origin: left center;
+
+box-shadow: 0 0 16px #00f0ff55, 0 0 8px #a600ff33;
+border: 1.5px solid #00f0ff;
+padding: 1.1rem 1.2rem;
+color: #fff;
+font-family: 'Orbitron', 'Inter', 'monospace', sans-serif;
+min-width: 220px;
+max-width: 320px;
+width: 100%;
+box-sizing: border-box;
+animation: cyberGlow 2s infinite alternate;
+}
+
+/* Animation corrigée */
+:host.slide-in-out-collapsed .statut-container {
+  transform: translateX(-85%);
+  opacity: 0.5;
+}
+
+
+/* Animation corrigée */
+:host.slide-in-out-collapsed .statut-container {
+  transform: translateX(-85%);
+  opacity: 0.5;
+}
+
+/* Zone de déclenchement sur le bord gauche */
+:host::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 15px;
+  height: 100%;
+  z-index: 2;
+  cursor: pointer;
+  display: block;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  :host {
+    width: 100% !important;
+    margin: 1rem 0 !important;
+  }
+  .statut-container {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  :host::before {
+    display: none;
+  }
+}
+
+.statut-container {
+
+    /* Conserve tous les styles visuels */
     background: linear-gradient(90deg, #181a20 70%, #1e005a 100%);
     border-radius: 12px;
-    box-shadow: 0 0 16px #00f0ff55, 0 0 8px #a600ff33;
-    border: 1.5px solid #00f0ff;
-    padding: 1.1rem 1.2rem;
-    color: #fff;
-    font-family: 'Orbitron', 'Inter', 'monospace', sans-serif;
-    min-width: 220px;
-    max-width: 320px;
-    margin-bottom: 1rem;
-    animation: cyberGlow 2s infinite alternate;
-  }
-  
-  @keyframes cyberGlow {
-    0% { box-shadow: 0 0 12px #00f0ff55, 0 0 8px #a600ff33; }
-    100% { box-shadow: 0 0 32px #00f0ff99, 0 0 16px #a600ff77; }
-  }
-  
-  .statut-title {
-    font-size: 1.3rem;
-    font-weight: bold;
-    letter-spacing: 1.5px;
-    margin-bottom: 0.8rem;
-    color: #fff;
-    text-shadow: 0 0 8px #00f0ff, 0 0 12px #a600ff, 0 0 2px #fff;
-    border-bottom: 1px solid #00f0ff;
-    padding-bottom: 0.3rem;
-  }
-  
-  .statut-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0.3rem 0;
-    font-size: 1.07rem;
-  }
-  
-  .label {
-    color: #a600ff;
-    font-weight: 500;
-    letter-spacing: 1px;
-    margin-right: 0.5rem;
-    text-shadow: 0 0 4px #00f0ff;
-  }
-  
-  .online {
-    color: #00f0ff;
-    font-weight: bold;
-    text-shadow: 0 0 6px #00f0ff, 0 0 8px #fff;
-    animation: blinkOnline 1.2s infinite alternate;
-  }
-  .offline {
-    color: #ff005a;
-    font-weight: bold;
-    text-shadow: 0 0 6px #ff005a, 0 0 8px #fff;
-    animation: blinkOffline 1s infinite alternate;
-  }
-  
-  @keyframes blinkOnline {
-    0% { filter: brightness(1); }
-    100% { filter: brightness(1.7); }
-  }
-  @keyframes blinkOffline {
-    0% { filter: brightness(1); }
-    100% { filter: brightness(1.3); }
-  }
-  
-  small {
-    font-size: 0.85em;
-    color: #a600ffbb;
-    margin-left: 0.3rem;
-  }
-  
+    /* ... autres styles ... */
+    transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.3s ease-out;
+    transform-origin: left center;
+  background: linear-gradient(90deg, #181a20 70%, #1e005a 100%);
+  border-radius: 12px;
+  box-shadow: 0 0 16px #00f0ff55, 0 0 8px #a600ff33;
+  border: 1.5px solid #00f0ff;
+  padding: 1.1rem 1.2rem;
+  color: #fff;
+  font-family: 'Orbitron', 'Inter', 'monospace', sans-serif;
+  min-width: 220px;
+  max-width: 320px;
+  width: 100%;
+  box-sizing: border-box;
+  animation: cyberGlow 2s infinite alternate;
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+@keyframes cyberGlow {
+  0% { box-shadow: 0 0 12px #00f0ff55, 0 0 8px #a600ff33; }
+  100% { box-shadow: 0 0 32px #00f0ff99, 0 0 16px #a600ff77; }
+}
+
+.statut-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  margin-bottom: 0.8rem;
+  color: #fff;
+  text-shadow: 0 0 8px #00f0ff, 0 0 12px #a600ff, 0 0 2px #fff;
+  border-bottom: 1px solid #00f0ff;
+  padding-bottom: 0.3rem;
+}
+
+.statut-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.3rem 0;
+  font-size: 1.07rem;
+}
+
+.label {
+  color: #a600ff;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-right: 0.5rem;
+  text-shadow: 0 0 4px #00f0ff;
+}
+
+.online {
+  color: #00f0ff;
+  font-weight: bold;
+  text-shadow: 0 0 6px #00f0ff, 0 0 8px #fff;
+  animation: blinkOnline 1.2s infinite alternate;
+}
+
+.offline {
+  color: #ff005a;
+  font-weight: bold;
+  text-shadow: 0 0 6px #ff005a, 0 0 8px #fff;
+  animation: blinkOffline 1s infinite alternate;
+}
+
+@keyframes blinkOnline {
+  0% { filter: brightness(1); }
+  100% { filter: brightness(1.7); }
+}
+
+@keyframes blinkOffline {
+  0% { filter: brightness(1); }
+  100% { filter: brightness(1.3); }
+}
+
+small {
+  font-size: 0.85em;
+  color: #a600ffbb;
+  margin-left: 0.3rem;
+}
