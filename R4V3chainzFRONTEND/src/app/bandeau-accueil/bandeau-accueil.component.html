@@ -1,5 +1,14 @@
-<div class="marquee">
-  <span>{{ message }}</span>
-  <span aria-hidden="true">{{ message }}</span>
-  <span aria-hidden="true">{{ message }}</span>
+<div class="bandeau-accueil">
+  <div class="marquee">
+    <div class="marquee__inner">
+      <span>{{ message1 }}</span>
+      <span>Dernière transaction : {{ lastTransaction }}</span>
+      <span>Nombre d'inscrits : {{ userCount }}</span>
+    </div>
+    <div class="marquee__inner" aria-hidden="true">
+      <span>{{ message1 }}</span>
+      <span>Dernière transaction : {{ lastTransaction }}</span>
+      <span>Nombre d'inscrits : {{ userCount }}</span>
+    </div>
+  </div>
 </div>

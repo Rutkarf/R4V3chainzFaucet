@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { R4v3BlockchainzComponent } from './r4v3-blockchainz.component';
+import { ParrainageModalComponent } from './parrainage-modal.component';
 
-describe('R4v3BlockchainzComponent', () => {
-  let component: R4v3BlockchainzComponent;
-  let fixture: ComponentFixture<R4v3BlockchainzComponent>;
+describe('ParrainageModalComponent', () => {
+  let component: ParrainageModalComponent;
+  let fixture: ComponentFixture<ParrainageModalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [R4v3BlockchainzComponent]
+      imports: [ParrainageModalComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(R4v3BlockchainzComponent);
+    fixture = TestBed.createComponent(ParrainageModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

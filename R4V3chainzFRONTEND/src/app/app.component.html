@@ -1,11 +1,40 @@
-<app-particles-background></app-particles-background>
-
-
-<navbar></navbar>
-
-<bandeau-accueil></bandeau-accueil>
-
-<layout-global>
+<div class="app-content">
+  <app-particles-background></app-particles-background>
   
-</layout-global>
+  <!-- Navbar avec gestion d'événement -->
+  <navbar (parrainageClicked)="showParrainageModal = true"></navbar>
 
+
+  <!-- Modal de parrainage -->
+  <app-parrainage-modal 
+    *ngIf="showParrainageModal"
+    (closed)="showParrainageModal = false">
+  </app-parrainage-modal>
+
+  <app-bandeau-accueil></app-bandeau-accueil>
+
+  <div class="main-layout">
+    <!-- Colonne Gauche -->
+    <div class="left-column">
+      <app-statut></app-statut>
+      <app-pair></app-pair>
+      <app-statistiques></app-statistiques>
+      <app-explorateur></app-explorateur>
+    </div>
+
+    <!-- Colonne Centrale -->
+    <div class="center-column">
+      <app-blockchain-visu></app-blockchain-visu>
+    </div>
+
+    <!-- Colonne Droite -->
+    <div class="right-column">
+      <div class="right-column-container">
+        <app-news></app-news>
+        <app-chat></app-chat>
+      </div>
+    </div>
+  </div>
+  
+  <app-footer></app-footer>
+</div>

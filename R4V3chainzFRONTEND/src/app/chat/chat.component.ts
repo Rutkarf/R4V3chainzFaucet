@@ -19,10 +19,10 @@ export class ChatComponent {
   tabs = ['Global', 'Team', 'Privé'];
   activeTab = 0;
 
-  // Simu de messages pour chaque chat
   messages: Message[][] = [
     [
-      { from: 'NeonFox', text: 'Bienvenue sur le chat global !', time: '21:00' }
+      { from: 'NeonFox', text: 'Bienvenue sur le chat global !', time: '21:00' },
+      { from: 'SysBot', text: 'Nouveau message non lu', time: '21:01' }
     ],
     [
       { from: 'CyberWolf', text: 'Go Team R4V3 !', time: '21:01' }
@@ -40,18 +40,20 @@ export class ChatComponent {
   }
 
   sendMessage() {
-    if (this.newMessage.trim().length === 0) return;
+    if (!this.newMessage.trim()) return;
+    
     const now = new Date();
     this.messages[this.activeTab].push({
       from: 'Moi',
       text: this.newMessage,
-      time: now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0')
+      time: `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`
     });
+    
     this.newMessage = '';
     setTimeout(() => this.scrollToBottom(), 10);
   }
 
-  scrollToBottom() {
+  private scrollToBottom() {
     const chatWindow = document.querySelector('.chat-messages');
     if (chatWindow) chatWindow.scrollTop = chatWindow.scrollHeight;
   }

@@ -1,33 +1,32 @@
 <div class="chat-container">
-    <div class="chat-tabs">
-      <button
-        *ngFor="let tab of tabs; let i = index"
-        class="chat-tab-btn"
-        [class.active]="activeTab === i"
-        (click)="switchTab(i)"
-      >
-        {{ tab }}
-      </button>
-    </div>
-  
-    <div class="chat-messages">
-      <div *ngFor="let msg of messages[activeTab]" class="chat-msg">
-        <span class="chat-msg-from">{{ msg.from }}</span>
-        <span class="chat-msg-text">{{ msg.text }}</span>
-        <span class="chat-msg-time">{{ msg.time }}</span>
-      </div>
-    </div>
-  
-    <form class="chat-input-row" (ngSubmit)="sendMessage()">
-      <input
-        class="chat-input"
-        type="text"
-        [(ngModel)]="newMessage"
-        name="chatInput"
-        autocomplete="off"
-        placeholder="Écris un message..."
-      />
-      <button class="chat-send-btn" type="submit">Envoyer</button>
-    </form>
+  <div class="chat-tabs">
+    <button
+      *ngFor="let tab of tabs; let i = index"
+      class="chat-tab-btn"
+      [class.active]="activeTab === i"
+      (click)="switchTab(i)"
+    >
+      {{ tab }}
+    </button>
   </div>
-  
+
+  <div class="chat-messages">
+    <div *ngFor="let msg of messages[activeTab]" class="chat-msg">
+      <span class="chat-msg-from">{{ msg.from }}</span>
+      <span class="chat-msg-text">{{ msg.text }}</span>
+      <span class="chat-msg-time">{{ msg.time }}</span>
+    </div>
+  </div>
+
+  <form class="chat-input-row" (ngSubmit)="sendMessage()">
+    <input
+      class="chat-input"
+      type="text"
+      [(ngModel)]="newMessage"
+      name="chatInput"
+      autocomplete="off"
+      placeholder="Écris un message..."
+    />
+    <button class="chat-send-btn" type="submit">Envoyer</button>
+  </form>
+</div>

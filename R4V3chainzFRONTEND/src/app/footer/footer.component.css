@@ -1,4 +1,46 @@
-.donate-news-container {
+/* ------------------- */
+/* Styles du Footer */
+/* ------------------- */
+.footer-content {
+    background: linear-gradient(90deg, #181a20 70%, #1e005a 100%);
+    color: #fff;
+    font-family: 'Orbitron', 'Inter', 'monospace', sans-serif;
+    width: 100%;
+    padding: 0.6rem 0;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 0 16px #a600ff55, 0 0 8px #00f0ff33;
+    border-top: 1.5px solid #a600ff;
+    z-index: 1000;
+  }
+  
+  
+  .footer-main {
+    max-width: 800px;
+    width: 100%;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  
+  .footer-links a {
+    color: #00f0ff;
+    margin: 0 0.8rem;
+    text-decoration: none;
+    transition: color 0.2s;
+    font-size: 0.9rem;
+  }
+  
+  .footer-links a:hover {
+    color: #a600ff;
+  }
+  
+  /* ---------------------------- */
+  /* Styles du Donate-News Container */
+  /* ---------------------------- */
+  .donate-news-container {
     background: linear-gradient(90deg, #181a20 70%, #1e005a 100%);
     border-radius: 12px;
     box-shadow: 0 0 16px #a600ff55, 0 0 8px #00f0ff33;
@@ -15,11 +57,18 @@
     gap: 1.2rem;
   }
   
+  /* Animations partagées */
   @keyframes cyberGlow {
     0% { box-shadow: 0 0 12px #a600ff55, 0 0 8px #00f0ff33; }
     100% { box-shadow: 0 0 32px #a600ff99, 0 0 16px #00f0ff77; }
   }
   
+  @keyframes fadeOut {
+    0% { opacity: 1;}
+    100% { opacity: 0;}
+  }
+  
+  /* Styles spécifiques au Donate Section */
   .donate-section, .news-section {
     margin-bottom: 0.5rem;
   }
@@ -75,7 +124,8 @@
     padding: 0 0.2rem;
   }
   
-  .donate-copy-btn:hover, .donate-copy-btn:focus {
+  .donate-copy-btn:hover, 
+  .donate-copy-btn:focus {
     color: #a600ff;
     transform: scale(1.2);
   }
@@ -87,11 +137,6 @@
     margin-left: 0.3rem;
     text-shadow: 0 0 6px #a600ff, 0 0 8px #fff;
     animation: fadeOut 1.5s forwards;
-  }
-  
-  @keyframes fadeOut {
-    0% { opacity: 1;}
-    100% { opacity: 0;}
   }
   
   .donate-btn {
@@ -111,36 +156,9 @@
     margin-top: 0.2rem;
   }
   
-  .donate-btn:hover, .donate-btn:focus {
+  .donate-btn:hover,
+  .donate-btn:focus {
     background: linear-gradient(90deg, #00f0ff 0%, #a600ff 100%);
     box-shadow: 0 0 32px #a600ff99, 0 0 16px #00f0ff77;
     transform: scale(1.06);
-    color: #fff;
   }
-  
-  .news-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .news-list li {
-    margin-bottom: 0.4rem;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-size: 0.98rem;
-  }
-  
-  .news-date {
-    color: #00f0ff;
-    font-size: 0.93rem;
-    font-weight: bold;
-    text-shadow: 0 0 4px #a600ff;
-  }
-  
-  .news-msg {
-    color: #fff;
-    text-shadow: 0 0 6px #a600ff, 0 0 4px #00f0ff;
-  }
-  

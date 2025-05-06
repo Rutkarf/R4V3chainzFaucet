@@ -6,15 +6,50 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class BlockchainService {
-
   private blockchainDataSubject = new Subject<any>();
   blockchainData$ = this.blockchainDataSubject.asObservable();
+
+  requestSync() {
+    // Pour le moment, on simule une réponse
+    this.updateBlockchainData({
+      action: 'syncBlockchain',
+      data: {
+        blocks: [],
+        transactions: []
+      }
+    });
+  }
+
+  requestBalance() {
+    // Pour le moment, on simule une réponse
+    this.updateBlockchainData({
+      action: 'getBalance',
+      balance: 0
+    });
+  }
+
+  requestPublicKey() {
+    // Pour le moment, on simule une réponse
+    this.updateBlockchainData({
+      action: 'getPublicKey',
+      publicKey: ''
+    });
+  }
+
+  requestTransactions() {
+    // Pour le moment, on simule une réponse
+    this.updateBlockchainData({
+      action: 'syncBlockchain',
+      data: {
+        transactions: []
+      }
+    });
+  }
 
   updateBlockchainData(data: any) {
     this.blockchainDataSubject.next(data);
   }
 
-  // Exemple de méthode pour envoyer des données pour chaque action
   mineBlock(index: number, hash: string, time: string) {
     this.updateBlockchainData({
       action: 'mineBlock',

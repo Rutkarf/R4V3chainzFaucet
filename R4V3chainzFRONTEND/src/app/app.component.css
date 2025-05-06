@@ -1,0 +1,124 @@
+.left-column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.2rem; /* espace entre les composants */
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  padding: 2rem 0 2rem 8px;
+  z-index: 1000;
+  /* optionnel : overflow-y: auto; */
+}
+@media (max-width: 900px) {
+  .left-column {
+    position: static;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    padding: 0;
+    gap: 1rem;
+  }
+}
+
+
+.left-column-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Animation slide pour tous les enfants */
+.left-column-container > * {
+  transition: transform 0.3s cubic-bezier(0.68,-0.55,0.27,1.55);
+  transform: translateX(-85%);
+  will-change: transform;
+}
+
+/* Slide au survol ou expanded */
+.left-column-container > *:hover,
+.left-column-container > *.expanded {
+  transform: translateX(0);
+  z-index: 10;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .left-column {
+    flex: 1 1 100%;
+    padding-left: 0;
+  }
+  .left-column-container {
+    gap: 1rem;
+  }
+  .left-column-container > * {
+    transform: none !important;
+    width: 95%;
+    margin: 0.5rem auto !important;
+  }
+}
+
+
+.right-column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1.2rem; /* espace entre les composants */
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  padding: 2rem 8px 2rem 0; /* 2rem haut/bas, 8px à droite */
+  z-index: 1000;
+  /* optionnel : overflow-y: auto; */
+}
+
+.right-column-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+  justify-content: center; /* centre verticalement les enfants */
+}
+
+/* Animation slide pour tous les enfants (optionnel) */
+.right-column-container > * {
+  transition: transform 0.3s cubic-bezier(0.68,-0.55,0.27,1.55);
+  transform: translateX(85%);
+  will-change: transform;
+}
+
+/* Slide au survol ou expanded */
+.right-column-container > *:hover,
+.right-column-container > *.expanded {
+  transform: translateX(0);
+  z-index: 10;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .right-column {
+    position: static;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    padding: 0;
+    gap: 1rem;
+    align-items: stretch;
+  }
+  .right-column-container {
+    gap: 1rem;
+    justify-content: flex-start;
+  }
+  .right-column-container > * {
+    transform: none !important;
+    width: 95%;
+    margin: 0.5rem auto !important;
+  }
+}
+

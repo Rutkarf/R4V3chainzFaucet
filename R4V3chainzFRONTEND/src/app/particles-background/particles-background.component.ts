@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
       top: 0; left: 0; width: 100%; height: 100%;
       z-index: -1;
       display: block;
-      overflow: hidden;
+     
     }
     canvas.particles-canvas {
       width: 100%;

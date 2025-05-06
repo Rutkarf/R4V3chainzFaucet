@@ -1,62 +1,63 @@
 .bandeau-accueil {
-    width: 100vw;
-    min-height: 36px;
-    background: linear-gradient(90deg, #181a20 80%, #a600ff 100%);
-    color: #fff;
-    font-family: 'Orbitron', 'Inter', 'monospace', sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1rem;
-    letter-spacing: 1px;
-    box-shadow: 0 2px 16px #00f0ff44, 0 1px 4px #a600ff33;
-    border-bottom: 1.5px solid #00f0ff;
-    text-shadow:
-      0 0 8px #00f0ff,
-      0 0 12px #a600ff,
-      0 0 2px #fff;
-    animation: bandeauGlow 2s infinite alternate;
-  }
+  width: 100vw;
+  min-height: 36px;
+  background: linear-gradient(90deg, #181a20 80%, #a600ff 100%);
+  color: #fff;
+  font-family: 'Orbitron', 'Inter', 'monospace', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  box-shadow: 0 2px 16px #00f0ff44, 0 1px 4px #a600ff33;
+  border-bottom: 1.5px solid #00f0ff;
+  text-shadow:
+    0 0 8px #00f0ff,
+    0 0 12px #a600ff,
+    0 0 2px #fff;
+  animation: bandeauGlow 2s infinite alternate;
   
-  @keyframes bandeauGlow {
-    0% { box-shadow: 0 2px 16px #00f0ff44, 0 1px 4px #a600ff33; }
-    100% { box-shadow: 0 2px 32px #00f0ff88, 0 1px 8px #a600ff77; }
-  }
+  position: relative;
+}
+
+@keyframes bandeauGlow {
+  0% { box-shadow: 0 2px 16px #00f0ff44, 0 1px 4px #a600ff33; }
+  100% { box-shadow: 0 2px 32px #00f0ff88, 0 1px 8px #a600ff77; }
+}
+
+.marquee {
+  width: 100%;
   
-  .marquee {
-    display: flex;
-    overflow: hidden;
-    white-space: nowrap;
-    width: 100%;
-    background: #222;
-    color: #fff;
-    align-items: center;
-    height: 40px;
-    position: relative;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  background: transparent;
+}
+
+.marquee__inner {
+  display: flex;
+  flex-shrink: 0;
+  white-space: nowrap;
+  animation: marqueeScroll 18s linear infinite;
+}
+
+.marquee__inner span {
+  display: inline-block;
+  padding: 0 2.5rem;
+  font-size: 1.2rem;
+  line-height: 40px;
+}
+
+.marquee:hover .marquee__inner {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0);
   }
-  
-  .marquee span {
-    display: inline-block;
-    padding-right: 4rem;
-    animation: marquee 15s linear infinite;
-    font-size: 1.2rem;
-    line-height: 40px;
+  100% {
+    transform: translateX(-100%);
   }
-  
-  .marquee span[aria-hidden="true"] {
-    /* Décale la deuxième occurrence pour qu'elle suive la première */
-    margin-left: 2rem;
-  }
-  
-  @keyframes marquee {
-    0% {
-      transform: translateX(0%);
-    }
-    100% {
-      transform: translateX(-100%);
-    }
-  }
-  .marquee:hover span {
-    animation-play-state: paused;
-  }
-  
+}
