@@ -1,20 +1,42 @@
 <nav class="navbar">
-  <div class="navbar-brand cyber-glitch" tabindex="0">
-    R4V3chainz
-    <span class="scanline"></span>
-  </div>
-
-  <div class="navbar-faucet">
-    <span class="faucet-value">{{ value | number:'1.15-15' }} R4V3</span>
-    <button class="claim-btn" (click)="claim()">CLAIM!</button>
-  </div>
-
-  <div class="navbar-last-cashout">
-    <span class="last-cashout-info">LastCashOut : {{ date }} ({{ hash }})</span>
-  </div>
-
-  <div class="navbar-actions">
-    <button class="parrainage-btn" (click)="handleParrainageClick()">Parrainage</button>
-    <button class="connexion-btn">Connexion</button>
-  </div>
-</nav>
+    <div class="navbar-brand">
+      R4V3chainz
+    </div>
+    
+    <div class="navbar-actions">
+      <button 
+        class="modal-btn" 
+        (click)="openModal()"
+        (mouseover)="onMouseOver()"
+        (mouseout)="onMouseOut()">
+        Ouvrir Modal
+      </button>
+    </div>
+  
+    <!-- Modal intégrée -->
+    <div class="modal-overlay" *ngIf="isModalOpen" (click)="closeModal()">
+      <div class="modal-container" 
+           (click)="$event.stopPropagation()" 
+           role="dialog" 
+           aria-labelledby="modal-title" 
+           aria-modal="true">
+        <div class="modal-header">
+          <h2 id="modal-title">Titre de la Modal</h2>
+          <button class="modal-close" 
+                  (click)="closeModal()" 
+                  aria-label="Fermer">
+            &times;
+          </button>
+        </div>
+        
+        <div class="modal-content">
+          <p>Contenu personnalisé ici...</p>
+        </div>
+        
+        <div class="modal-footer">
+          <button class="modal-button" (click)="closeModal()">Fermer</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+  

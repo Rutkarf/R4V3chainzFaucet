@@ -1,185 +1,221 @@
 /* NAVBAR CYBERPUNK */
 .navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 1.2rem;
-  height: 38px;
-  background: linear-gradient(90deg, #181a20 80%, #1e005a 100%);
-  box-shadow: 0 0 18px 2px #00f0ff44, 0 2px 8px #a600ff33;
-  border-bottom: 2px solid #00f0ff;
-  position: relative;
-  z-index: 2;
-  font-size: 0.97rem;
-}
-
-/* Titre cyberpunk animé */
-.navbar-brand {
-  display: inline-block;
-  font-weight: bold;
-  font-size: 1.2rem;
-  letter-spacing: 2px;
-  color: #fff;
-  text-shadow:
-    0 0 8px #00f0ff,
-    0 0 16px #a600ff,
-    0 0 2px #fff;
-  margin-right: 1.2rem;
-  cursor: pointer;
-  position: relative;
-  transition: text-shadow 0.3s;
-  outline: none;
-  animation: brandGlow 2s infinite alternate;
-}
-
-/* Glow permanent */
-@keyframes brandGlow {
-  0% { text-shadow: 0 0 8px #00f0ff, 0 0 16px #a600ff, 0 0 2px #fff; }
-  100% { text-shadow: 0 0 22px #00f0ff, 0 0 32px #a600ff, 0 0 8px #fff; }
-}
-
-/* Glitch au hover/focus */
-.navbar-brand:hover,
-.navbar-brand:focus {
-  animation: glitch 0.4s cubic-bezier(.77,0,.18,1.01) 2, brandGlow 2s infinite alternate;
-  color: #00f0ff;
-}
-
-@keyframes glitch {
-  0% { text-shadow: 2px 0 #a600ff, -2px 0 #00f0ff; }
-  20% { text-shadow: -2px 0 #a600ff, 2px 0 #00f0ff; }
-  40% { text-shadow: 2px 2px #a600ff, -2px -2px #00f0ff; }
-  60% { text-shadow: -2px -2px #a600ff, 2px 2px #00f0ff; }
-  80% { text-shadow: 2px 0 #a600ff, -2px 0 #00f0ff; }
-  100% { text-shadow: 0 0 8px #00f0ff, 0 0 16px #a600ff, 0 0 2px #fff; }
-}
-
-/* Scanline sur le titre */
-.navbar-brand .scanline {
-  content: "";
-  position: absolute;
-  left: 0; right: 0; top: 0; height: 100%;
-  pointer-events: none;
-  background: repeating-linear-gradient(
-    to bottom,
-    rgba(255,255,255,0.06) 0px,
-    rgba(255,255,255,0.06) 1px,
-    transparent 2px,
-    transparent 4px
-  );
-  width: 100%;
-  z-index: 1;
-  animation: scanlines 2s linear infinite;
-}
-
-@keyframes scanlines {
-  0% { background-position-y: 0; }
-  100% { background-position-y: 4px; }
-}
-
-/* Faucet et cashout */
-.navbar-faucet,
-.navbar-last-cashout {
-  display: flex;
-  align-items: center;
-  position: relative;
-  margin-left: 1.2rem;
-}
-
-.faucet-value {
-  color: #fff;
-  font-weight: bold;
-  text-shadow:
-    0 0 4px #00f0ff,
-    0 0 8px #a600ff;
-  font-size: 1rem;
-  margin-right: 0.8rem;
-  animation: flicker 2s infinite alternate;
-}
-
-@keyframes flicker {
-  0% { opacity: 1; filter: blur(0.2px);}
-  45% { opacity: 0.85; filter: blur(1px);}
-  100% { opacity: 1; filter: blur(0);}
-}
-
-.claim-btn {
-  background: linear-gradient(90deg, #00f0ff 0%, #a600ff 100%);
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  padding: 0.3rem 0.9rem;
-  font-weight: bold;
-  font-size: 1rem;
-  box-shadow: 0 0 8px #00f0ff, 0 0 16px #a600ff;
-  cursor: pointer;
-  transition: transform 0.1s, box-shadow 0.2s, background 0.2s;
-  margin-left: 0.6rem;
-  text-shadow: 0 0 2px #fff, 0 0 8px #a600ff;
-}
-
-.claim-btn:hover {
-  transform: scale(1.07);
-  box-shadow: 0 0 24px #00f0ff, 0 0 32px #a600ff;
-  background: linear-gradient(90deg, #a600ff 0%, #00f0ff 100%);
-}
-
-.last-cashout-info {
-  color: #fff;
-  font-size: 0.94rem;
-  text-shadow: 0 0 4px #00f0ff, 0 0 8px #a600ff;
-  margin-left: 0.7rem;
-  letter-spacing: 0.5px;
-}
-
-/* Actions à droite */
-.navbar-actions {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-left: 1.2rem;
-}
-
-.parrainage-btn,
-.connexion-btn {
-  background: transparent;
-  color: #fff;
-  border: 2px solid #a600ff;
-  border-radius: 6px;
-  padding: 0.3rem 0.9rem;
-  font-weight: bold;
-  font-size: 1rem;
-  text-shadow: 0 0 2px #fff, 0 0 8px #a600ff;
-  box-shadow: 0 0 8px #a600ff;
-  cursor: pointer;
-  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
-}
-
-.parrainage-btn:hover,
-.connexion-btn:hover {
-  background: #a600ff44;
-  border-color: #00f0ff;
-  box-shadow: 0 0 16px #00f0ff, 0 0 32px #a600ff;
-}
-
-/* Responsive */
-@media (max-width: 900px) {
-  .navbar {
-    flex-wrap: wrap;
-    height: auto;
-    padding: 0.7rem;
-    font-size: 0.92rem;
-  }
-  .navbar-brand {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.2rem;
+    height: 48px;
+    background: linear-gradient(90deg, #181a20 80%, #1e005a 100%);
+    box-shadow: 0 0 18px 2px #00f0ff44, 0 2px 8px #a600ff33;
+    border-bottom: 2px solid #00f0ff;
+    position: relative;
+    z-index: 100;
     font-size: 1rem;
-    margin-bottom: 0.5rem;
   }
+  
+  /* Titre cyberpunk animé */
+  .navbar-brand {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    color: #fff;
+    text-shadow:
+      0 0 8px #00f0ff,
+      0 0 16px #a600ff,
+      0 0 2px #fff;
+    margin-right: 1.2rem;
+    cursor: pointer;
+    position: relative;
+    transition: text-shadow 0.3s;
+    outline: none;
+    animation: brandGlow 2s infinite alternate;
+  }
+  
+  @keyframes brandGlow {
+    0% { text-shadow: 0 0 8px #00f0ff, 0 0 16px #a600ff, 0 0 2px #fff; }
+    100% { text-shadow: 0 0 22px #00f0ff, 0 0 32px #a600ff, 0 0 8px #fff; }
+  }
+  
+  /* Glitch au hover/focus */
+  .navbar-brand:hover,
+  .navbar-brand:focus {
+    animation: glitch 0.4s cubic-bezier(.77,0,.18,1.01) 2, brandGlow 2s infinite alternate;
+    color: #00f0ff;
+  }
+  
+  @keyframes glitch {
+    0% { text-shadow: 2px 0 #a600ff, -2px 0 #00f0ff; }
+    20% { text-shadow: -2px 0 #a600ff, 2px 0 #00f0ff; }
+    40% { text-shadow: 2px 2px #a600ff, -2px -2px #00f0ff; }
+    60% { text-shadow: -2px -2px #a600ff, 2px 2px #00f0ff; }
+    80% { text-shadow: 2px 0 #a600ff, -2px 0 #00f0ff; }
+    100% { text-shadow: 0 0 8px #00f0ff, 0 0 16px #a600ff, 0 0 2px #fff; }
+  }
+  
+  /* Scanline sur le titre */
+  .navbar-brand .scanline {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; top: 0; height: 100%;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.06) 0px,
+      rgba(255,255,255,0.06) 1px,
+      transparent 2px,
+      transparent 4px
+    );
+    width: 100%;
+    z-index: 1;
+    animation: scanlines 2s linear infinite;
+  }
+  
+  @keyframes scanlines {
+    0% { background-position-y: 0; }
+    100% { background-position-y: 4px; }
+  }
+  
+  /* Actions à droite */
   .navbar-actions {
-    gap: 0.3rem;
-    margin-left: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
   }
-  .navbar-faucet,
-  .navbar-last-cashout {
-    margin-left: 0.5rem;
+  
+  /* Bouton modal cyberpunk */
+  .modal-btn, .modal-trigger {
+    padding: 0.5rem 1.2rem;
+    background: linear-gradient(90deg, #00f0ff 0%, #a600ff 100%);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    box-shadow: 0 0 8px #00f0ff, 0 0 16px #a600ff;
+    text-shadow: 0 0 2px #fff, 0 0 8px #a600ff;
+    transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
   }
-}
+  
+  .modal-btn:hover, .modal-trigger:hover {
+    background: linear-gradient(90deg, #a600ff 0%, #00f0ff 100%);
+    box-shadow: 0 0 24px #00f0ff, 0 0 32px #a600ff;
+    transform: scale(1.07);
+  }
+  
+  /* Responsive */
+  @media (max-width: 900px) {
+    .navbar {
+      flex-wrap: wrap;
+      height: auto;
+      padding: 0.7rem;
+      font-size: 0.92rem;
+    }
+    .navbar-brand {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    .navbar-actions {
+      gap: 0.5rem;
+      margin-left: 0.5rem;
+    }
+  }
+  
+  /* MODAL CYBERPUNK */
+  .modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.82);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: modalFadeIn 0.25s;
+  }
+  @keyframes modalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  .modal-container {
+    background: linear-gradient(120deg, #1e005a 0%, #181a20 100%);
+    border-radius: 10px;
+    box-shadow:
+      0 0 24px #00f0ff,
+      0 0 48px #a600ff,
+      0 0 2px #fff;
+    border: 2px solid #00f0ff;
+    width: 90%;
+    max-width: 600px;
+    padding: 0;
+    overflow: hidden;
+    animation: modalPop 0.2s;
+  }
+  @keyframes modalPop {
+    from { transform: scale(0.92); opacity: 0.7; }
+    to { transform: scale(1); opacity: 1; }
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid #00f0ff44;
+    background: #1e005a;
+    color: #fff;
+    text-shadow:
+      0 0 8px #00f0ff,
+      0 0 16px #a600ff;
+  }
+  
+  .modal-close {
+    background: transparent;
+    border: none;
+    color: #00f0ff;
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 0.5rem;
+    text-shadow: 0 0 8px #00f0ff, 0 0 16px #a600ff;
+    transition: color 0.2s;
+  }
+  .modal-close:hover {
+    color: #a600ff;
+  }
+  
+  .modal-content {
+    padding: 2rem 1.5rem;
+    color: #e0e0e0;
+    line-height: 1.6;
+    background: transparent;
+    font-size: 1.08rem;
+  }
+  
+  .modal-footer {
+    padding: 1rem 1.5rem 1.5rem 1.5rem;
+    border-top: 1px solid #00f0ff44;
+    background: #181a20;
+    text-align: right;
+  }
+  
+  .modal-button {
+    background: linear-gradient(90deg, #00f0ff 0%, #a600ff 100%);
+    color: white;
+    padding: 10px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    box-shadow: 0 0 8px #00f0ff, 0 0 16px #a600ff;
+    transition: background 0.3s, box-shadow 0.2s;
+    text-shadow: 0 0 2px #fff, 0 0 8px #a600ff;
+  }
+  .modal-button:hover {
+    background: linear-gradient(90deg, #a600ff 0%, #00f0ff 100%);
+    box-shadow: 0 0 24px #00f0ff, 0 0 32px #a600ff;
+  }
+  

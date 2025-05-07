@@ -1,25 +1,47 @@
 <div class="app-content">
   <app-particles-background></app-particles-background>
-  
-  <!-- Navbar avec gestion d'événement -->
-  <navbar (parrainageClicked)="showParrainageModal = true"></navbar>
+  <app-r4v3token></app-r4v3token>
 
+  <!-- Navbar avec gestion d'événements -->
+  <app-navbar 
+    (parrainageModalOpened)="handleParrainageModalOpen()"
+    (connexionModalOpened)="handleConnexionModalOpen()"
+    (registerModalOpened)="handleRegisterModalOpen()">
+  </app-navbar>
 
-  <!-- Modal de parrainage -->
-  <app-parrainage-modal 
+  <!-- Modales -->
+  <app-modal 
     *ngIf="showParrainageModal"
-    (closed)="showParrainageModal = false">
-  </app-parrainage-modal>
+    (closed)="handleModalClose()">
+    <h2>Parrainage</h2>
+    <p>Contenu de la modal de parrainage</p>
+  </app-modal>
+
+  <app-modal 
+    *ngIf="showConnexionModal"
+    (closed)="handleModalClose()">
+    <h2>Connexion</h2>
+    <p>Contenu de la modal de connexion</p>
+  </app-modal>
+
+  <app-modal 
+    *ngIf="showRegisterModal"
+    (closed)="handleModalClose()">
+    <h2>Register</h2>
+    <p>Contenu de la modal d'inscription</p>
+  </app-modal>
 
   <app-bandeau-accueil></app-bandeau-accueil>
 
   <div class="main-layout">
     <!-- Colonne Gauche -->
     <div class="left-column">
-      <app-statut></app-statut>
-      <app-pair></app-pair>
-      <app-statistiques></app-statistiques>
-      <app-explorateur></app-explorateur>
+      <div class="left-column-container">
+        <app-statut></app-statut>
+        <app-pair></app-pair>
+        <app-statistiques></app-statistiques>
+        <app-explorateur></app-explorateur>
+      </div>
     </div>
 
     <!-- Colonne Centrale -->

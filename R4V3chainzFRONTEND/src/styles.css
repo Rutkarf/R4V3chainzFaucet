@@ -19,6 +19,8 @@ body {
   flex: 1 0 auto;
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 1;
 }
 
 /* ===== MAIN CONTAINER / LAYOUT ===== */
@@ -192,4 +194,14 @@ body {
   .center-column {
     padding: 0.7rem 0.3rem;
   }
+}
+
+/* Styles globaux pour la modal */
+.modal-overlay {
+  position: fixed !important;
+  z-index: 9999 !important;
+}
+
+.modal-content {
+  z-index: 10000 !important;
 }

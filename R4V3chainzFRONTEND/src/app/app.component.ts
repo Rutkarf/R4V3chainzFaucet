@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { R4v3tokenComponent} from './r4v3token/r4v3token.component'
 import { NavbarComponent } from './navbar/navbar.component';
-import { ParrainageModalComponent } from './parrainage-modal/parrainage-modal.component';
+import { ModalComponent } from './modal/modal.component';
 import { BandeauAccueilComponent } from "./bandeau-accueil/bandeau-accueil.component";
 import { ChatComponent } from "./chat/chat.component";
 import { NewsComponent } from './news/news.component';
@@ -19,8 +19,9 @@ import { FooterComponent } from './footer/footer.component';
   standalone: true,
   imports: [
     CommonModule,
-    ParrainageModalComponent,
+    R4v3tokenComponent,
     NavbarComponent,
+    ModalComponent,
     BandeauAccueilComponent,
     ChatComponent,
     NewsComponent,
@@ -32,64 +33,41 @@ import { FooterComponent } from './footer/footer.component';
     BlockchainVisuComponent,
     FooterComponent
   ],
-  template: `
-    <app-particles-background></app-particles-background>
-
-    <!-- Ajout du modal -->
-    <app-navbar (parrainageClicked)="handleParrainageClick()"></app-navbar>
-    
-    <app-parrainage-modal 
-      *ngIf="showParrainageModal"
-      (closed)="handleModalClose()">
-    </app-parrainage-modal>
-
-    <app-bandeau-accueil></app-bandeau-accueil>
-    
-    <div class="main-layout">
-      <!-- Colonne Gauche -->
-      <div class="left-column">
-        <app-statut></app-statut>
-        <app-pair></app-pair>
-        <app-statistiques></app-statistiques>
-        <app-explorateur></app-explorateur>
-      </div>
-
-      <!-- Colonne Centrale -->
-      <div class="center-column">
-        <app-blockchain-visu></app-blockchain-visu>
-      </div>
-
-      <!-- Colonne Droite -->
-      <div class="right-column">
-        <app-news></app-news>
-        <app-chat></app-chat>
-      </div>
-    </div>
-    
-    <app-footer></app-footer>
-  `,
-  styles: `
-    /* Styles existants inchangés */
-  `
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   showParrainageModal = false;
+  showConnexionModal = false;
+  showRegisterModal = false;
 
-  handleParrainageClick() {
-    console.log('handleParrainageClick dans AppComponent');
+  constructor() {
+    console.log('AppComponent constructor');
+  }
+
+  ngOnInit() {
+    console.log('AppComponent initialized');
+  }
+
+  handleParrainageModalOpen() {
+    console.log('Ouverture de la modal parrainage');
     this.showParrainageModal = true;
-    console.log('showParrainageModal =', this.showParrainageModal);
+  }
+
+  handleConnexionModalOpen() {
+    console.log('Ouverture de la modal connexion');
+    this.showConnexionModal = true;
+  }
+
+  handleRegisterModalOpen() {
+    console.log('Ouverture de la modal register');
+    this.showRegisterModal = true;
   }
 
   handleModalClose() {
-    console.log('handleModalClose dans AppComponent');
+    console.log('Fermeture de la modal');
     this.showParrainageModal = false;
-    console.log('showParrainageModal =', this.showParrainageModal);
-  }
-
-  constructor() {
-    setInterval(() => {
-      console.log('État modal:', this.showParrainageModal);
-    }, 1000);
+    this.showConnexionModal = false;
+    this.showRegisterModal = false;
   }
 }

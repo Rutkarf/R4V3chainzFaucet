@@ -1,5 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { CommonModule } from '@angular/common'; // Ajout crucial
+import { CommonModule } from '@angular/common';
+
 interface Benefit {
   threshold: number;
   feeReduction: string;
@@ -14,11 +15,21 @@ interface Benefit {
   styleUrls: ['./parrainage.component.css']
 })
 export class ParrainageComponent {
-  @Output() closed = new EventEmitter<void>();
+
+
+
+  showModal = false; // Nouvelle propriété pour contrôler la visibilité
+
+  open() {
+    this.showModal = true;
+  }
 
   close() {
-    this.closed.emit();
+    this.showModal = false;
   }
+  @Output() closed = new EventEmitter<void>();
+
+  
   referralCount = 0; // À connecter à ton backend
   referralLink = 'https://r4v3chainz.app/register?ref=TON_CODE';
   copied = false;

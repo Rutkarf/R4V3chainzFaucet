@@ -7,6 +7,21 @@
     box-shadow: 0 2px 8px rgba(0,0,0,0.06);
   }
   
+
+  /* Dans parrainage.component.css */
+.parrainage-content {
+  min-width: 600px;
+  color: #fff;
+}
+
+.referral-link {
+  word-break: break-all;
+  background: #333;
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+
   .referral-link-block {
     display: flex;
     align-items: center;
