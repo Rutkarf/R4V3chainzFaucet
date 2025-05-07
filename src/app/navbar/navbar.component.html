@@ -1,42 +1,30 @@
 <nav class="navbar">
-    <div class="navbar-brand">
-      R4V3chainz
+  <div class="navbar-left">
+    <div class="navbar-brand" (click)="goHome()">
+      <span class="brand-text">R4V3chainz</span>
+      <div class="scanline"></div>
     </div>
-    
-    <div class="navbar-actions">
-      <button 
-        class="modal-btn" 
-        (click)="openModal()"
-        (mouseover)="onMouseOver()"
-        (mouseout)="onMouseOut()">
-        Ouvrir Modal
-      </button>
+    <div class="navbar-faucet">
+      <div class="faucet-value">0,000.000.000.000.001 <span class="faucet-unit">R4V3</span></div>
+      <button class="cyber-btn btn-claim" (click)="claimFaucet()">CLAIM!</button>
     </div>
-  
-    <!-- Modal intégrée -->
-    <div class="modal-overlay" *ngIf="isModalOpen" (click)="closeModal()">
-      <div class="modal-container" 
-           (click)="$event.stopPropagation()" 
-           role="dialog" 
-           aria-labelledby="modal-title" 
-           aria-modal="true">
-        <div class="modal-header">
-          <h2 id="modal-title">Titre de la Modal</h2>
-          <button class="modal-close" 
-                  (click)="closeModal()" 
-                  aria-label="Fermer">
-            &times;
-          </button>
-        </div>
-        
-        <div class="modal-content">
-          <p>Contenu personnalisé ici...</p>
-        </div>
-        
-        <div class="modal-footer">
-          <button class="modal-button" (click)="closeModal()">Fermer</button>
-        </div>
-      </div>
-    </div>
-  </nav>
-  
+  </div>
+
+  <div class="navbar-center">
+    <button class="cyber-btn" 
+            (click)="openParrainageModal()"
+            (mouseover)="onMouseOver('parrainage')"
+            (mouseout)="onMouseOut('parrainage')">
+      <span class="btn-content">Parrainage</span>
+    </button>
+  </div>
+
+  <div class="navbar-right">
+    <button class="cyber-btn" 
+            (click)="openConnexionModal()"
+            (mouseover)="onMouseOver('connexion')"
+            (mouseout)="onMouseOut('connexion')">
+      <span class="btn-content">Connexion</span>
+    </button>
+  </div>
+</nav>

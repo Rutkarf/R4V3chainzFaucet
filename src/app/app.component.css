@@ -14,7 +14,7 @@ app-navbar {
   right: 0;
   width: 100vw;
   z-index: 2000;
-  height: 2vh;
+  height: 4vh;
   background: rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;

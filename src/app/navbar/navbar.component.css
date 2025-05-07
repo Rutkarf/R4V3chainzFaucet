@@ -1,221 +1,191 @@
-/* NAVBAR CYBERPUNK */
 .navbar {
-    display: flex;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.2rem;
+  height: 48px;
+  width: 100%;
+  background: linear-gradient(90deg, #181a20 80%, #1e005a 100%);
+  box-shadow: 0 0 18px 2px #00f0ff44, 0 2px 8px #000;
+  border-bottom: 2px solid #00f0ff;
+  position: relative;
+  z-index: 100;
+  font-size: 1rem;
+  gap: 1rem;
+  font-family: 'Orbitron', monospace;
+}
+
+/* Conteneur gauche : titre + faucet */
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 0 1 auto;
+  min-width: 300px; /* Empêche le chevauchement */
+  max-width: 45%;   /* Limite la largeur pour laisser place au centre */
+  overflow: hidden; /* Coupe le dépassement */
+}
+
+/* Titre */
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: #00f0ff;
+  text-shadow:
+    0 0 8px #00f0ff,
+    0 0 16px #6e3cf0,
+    0 0 24px #a600ff,
+    0 0 32px #00f0ff;
+  cursor: pointer;
+  position: relative;
+  white-space: nowrap; /* Pas de retour à la ligne */
+}
+
+/* Faucet */
+.navbar-faucet {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-family: 'Courier New', monospace;
+  color: #00f0ff;
+  padding: 0.3rem 0.8rem;
+  background: rgba(30, 20, 60, 0.6);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  box-shadow:
+    0 0 12px rgba(0, 255, 255, 0.6),
+    inset 0 0 20px rgba(0, 255, 255, 0.3);
+  min-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Faucet value */
+.faucet-value {
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  text-align: right;
+}
+
+/* Bouton CLAIM */
+.btn-claim {
+  background: rgba(110, 60, 240, 0.3);
+  border-radius: 10px;
+  border: 1px solid rgba(110, 60, 240, 0.7);
+  padding: 0.4rem 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  box-shadow:
+    0 0 8px #6e3cf0,
+    inset 0 0 10px #a600ff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: 'Orbitron', monospace;
+  user-select: none;
+}
+
+.btn-claim:hover {
+  background: rgba(110, 60, 240, 0.6);
+  box-shadow:
+    0 0 20px #a600ff,
+    inset 0 0 20px #00ffff;
+  color: #00ffff;
+  transform: scale(1.05);
+}
+
+/* Centre : bouton Parrainage */
+.navbar-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+/* Droite : bouton Connexion */
+.navbar-right {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  flex: 0 1 auto;
+}
+
+/* Boutons généraux */
+.cyber-btn {
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid #a600ff;
+  border-radius: 8px;
+  padding: 0.4rem 1rem;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  box-shadow:
+    0 0 10px #6e3cf0,
+    inset 0 0 10px #a600ff;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Orbitron', monospace;
+  user-select: none;
+}
+
+.cyber-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(166, 0, 255, 0.3),
+    transparent
+  );
+  transition: 0.5s;
+  z-index: 0;
+}
+
+.cyber-btn:hover {
+  background: rgba(110, 60, 240, 0.7);
+  border-color: #00f0ff;
+  box-shadow:
+    0 0 20px #00f0ff,
+    inset 0 0 20px #a600ff;
+  color: #00f0ff;
+  transform: translateY(-2px);
+  z-index: 1;
+}
+
+.cyber-btn:hover::before {
+  left: 100%;
+}
+
+.cyber-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 0 10px #00f0ff inset;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .navbar {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 0.7rem;
+  }
+  .navbar-left {
+    max-width: 100%;
     justify-content: space-between;
-    padding: 0 1.2rem;
-    height: 48px;
-    background: linear-gradient(90deg, #181a20 80%, #1e005a 100%);
-    box-shadow: 0 0 18px 2px #00f0ff44, 0 2px 8px #a600ff33;
-    border-bottom: 2px solid #00f0ff;
-    position: relative;
-    z-index: 100;
-    font-size: 1rem;
   }
-  
-  /* Titre cyberpunk animé */
-  .navbar-brand {
-    display: inline-block;
-    font-weight: bold;
-    font-size: 1.4rem;
-    letter-spacing: 2px;
-    color: #fff;
-    text-shadow:
-      0 0 8px #00f0ff,
-      0 0 16px #a600ff,
-      0 0 2px #fff;
-    margin-right: 1.2rem;
-    cursor: pointer;
-    position: relative;
-    transition: text-shadow 0.3s;
-    outline: none;
-    animation: brandGlow 2s infinite alternate;
+  .navbar-faucet {
+    min-width: auto;
+    flex-shrink: 1;
   }
-  
-  @keyframes brandGlow {
-    0% { text-shadow: 0 0 8px #00f0ff, 0 0 16px #a600ff, 0 0 2px #fff; }
-    100% { text-shadow: 0 0 22px #00f0ff, 0 0 32px #a600ff, 0 0 8px #fff; }
-  }
-  
-  /* Glitch au hover/focus */
-  .navbar-brand:hover,
-  .navbar-brand:focus {
-    animation: glitch 0.4s cubic-bezier(.77,0,.18,1.01) 2, brandGlow 2s infinite alternate;
-    color: #00f0ff;
-  }
-  
-  @keyframes glitch {
-    0% { text-shadow: 2px 0 #a600ff, -2px 0 #00f0ff; }
-    20% { text-shadow: -2px 0 #a600ff, 2px 0 #00f0ff; }
-    40% { text-shadow: 2px 2px #a600ff, -2px -2px #00f0ff; }
-    60% { text-shadow: -2px -2px #a600ff, 2px 2px #00f0ff; }
-    80% { text-shadow: 2px 0 #a600ff, -2px 0 #00f0ff; }
-    100% { text-shadow: 0 0 8px #00f0ff, 0 0 16px #a600ff, 0 0 2px #fff; }
-  }
-  
-  /* Scanline sur le titre */
-  .navbar-brand .scanline {
-    content: "";
-    position: absolute;
-    left: 0; right: 0; top: 0; height: 100%;
-    pointer-events: none;
-    background: repeating-linear-gradient(
-      to bottom,
-      rgba(255,255,255,0.06) 0px,
-      rgba(255,255,255,0.06) 1px,
-      transparent 2px,
-      transparent 4px
-    );
-    width: 100%;
-    z-index: 1;
-    animation: scanlines 2s linear infinite;
-  }
-  
-  @keyframes scanlines {
-    0% { background-position-y: 0; }
-    100% { background-position-y: 4px; }
-  }
-  
-  /* Actions à droite */
-  .navbar-actions {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-  
-  /* Bouton modal cyberpunk */
-  .modal-btn, .modal-trigger {
-    padding: 0.5rem 1.2rem;
-    background: linear-gradient(90deg, #00f0ff 0%, #a600ff 100%);
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: bold;
-    box-shadow: 0 0 8px #00f0ff, 0 0 16px #a600ff;
-    text-shadow: 0 0 2px #fff, 0 0 8px #a600ff;
-    transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
-  }
-  
-  .modal-btn:hover, .modal-trigger:hover {
-    background: linear-gradient(90deg, #a600ff 0%, #00f0ff 100%);
-    box-shadow: 0 0 24px #00f0ff, 0 0 32px #a600ff;
-    transform: scale(1.07);
-  }
-  
-  /* Responsive */
-  @media (max-width: 900px) {
-    .navbar {
-      flex-wrap: wrap;
-      height: auto;
-      padding: 0.7rem;
-      font-size: 0.92rem;
-    }
-    .navbar-brand {
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
-    }
-    .navbar-actions {
-      gap: 0.5rem;
-      margin-left: 0.5rem;
-    }
-  }
-  
-  /* MODAL CYBERPUNK */
-  .modal-overlay {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw; height: 100vh;
-    background: rgba(0,0,0,0.82);
-    display: flex;
+  .navbar-center, .navbar-right {
+    flex-basis: 100%;
     justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    animation: modalFadeIn 0.25s;
+    margin-top: 0.5rem;
   }
-  @keyframes modalFadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  
-  .modal-container {
-    background: linear-gradient(120deg, #1e005a 0%, #181a20 100%);
-    border-radius: 10px;
-    box-shadow:
-      0 0 24px #00f0ff,
-      0 0 48px #a600ff,
-      0 0 2px #fff;
-    border: 2px solid #00f0ff;
-    width: 90%;
-    max-width: 600px;
-    padding: 0;
-    overflow: hidden;
-    animation: modalPop 0.2s;
-  }
-  @keyframes modalPop {
-    from { transform: scale(0.92); opacity: 0.7; }
-    to { transform: scale(1); opacity: 1; }
-  }
-  
-  .modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.2rem 1.5rem;
-    border-bottom: 1px solid #00f0ff44;
-    background: #1e005a;
-    color: #fff;
-    text-shadow:
-      0 0 8px #00f0ff,
-      0 0 16px #a600ff;
-  }
-  
-  .modal-close {
-    background: transparent;
-    border: none;
-    color: #00f0ff;
-    font-size: 2rem;
-    line-height: 1;
-    cursor: pointer;
-    padding: 0 0.5rem;
-    text-shadow: 0 0 8px #00f0ff, 0 0 16px #a600ff;
-    transition: color 0.2s;
-  }
-  .modal-close:hover {
-    color: #a600ff;
-  }
-  
-  .modal-content {
-    padding: 2rem 1.5rem;
-    color: #e0e0e0;
-    line-height: 1.6;
-    background: transparent;
-    font-size: 1.08rem;
-  }
-  
-  .modal-footer {
-    padding: 1rem 1.5rem 1.5rem 1.5rem;
-    border-top: 1px solid #00f0ff44;
-    background: #181a20;
-    text-align: right;
-  }
-  
-  .modal-button {
-    background: linear-gradient(90deg, #00f0ff 0%, #a600ff 100%);
-    color: white;
-    padding: 10px 24px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 1rem;
-    box-shadow: 0 0 8px #00f0ff, 0 0 16px #a600ff;
-    transition: background 0.3s, box-shadow 0.2s;
-    text-shadow: 0 0 2px #fff, 0 0 8px #a600ff;
-  }
-  .modal-button:hover {
-    background: linear-gradient(90deg, #a600ff 0%, #00f0ff 100%);
-    box-shadow: 0 0 24px #00f0ff, 0 0 32px #a600ff;
-  }
-  
+}
