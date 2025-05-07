@@ -1,6 +1,5 @@
 import { Component, ElementRef, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js';
 
 @Component({
@@ -11,6 +10,7 @@ import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js';
       width: 100%;
       height: 100vh;
       display: block;
+      cursor: pointer;
     }
   `],
   standalone: true
@@ -21,29 +21,27 @@ export class R4v3tokenComponent implements AfterViewInit, OnDestroy {
   private renderer!: THREE.WebGLRenderer;
   private scene!: THREE.Scene;
   private camera!: THREE.PerspectiveCamera;
-  private controls!: OrbitControls;
   private animationId: any;
   private mesh!: THREE.Mesh;
-  private colorHue = 0; // Variable pour la transition de couleur
+  private colorHue = 0;
+  private particleSystem!: THREE.Points;
+  private mouseX = 0;
+  private mouseY = 0;
+  private isHovered = false;
 
   ngAfterViewInit(): void {
     this.initThree();
     this.loadSTLModel();
+    this.initParticleSystem();
+    this.setupEventListeners();
     this.animate();
-    window.addEventListener('resize', this.onWindowResize);
   }
 
   ngOnDestroy(): void {
-    window.removeEventListener('resize', this.onWindowResize);
-    if (this.animationId) {
-      cancelAnimationFrame(this.animationId);
-    }
-    this.controls.dispose();
-    this.renderer.dispose();
+    this.cleanup();
   }
 
   private initThree(): void {
-    // Configuration du renderer avec fond transparent
     this.renderer = new THREE.WebGLRenderer({ 
       canvas: this.canvasRef.nativeElement,
       antialias: true,
@@ -52,40 +50,23 @@ export class R4v3tokenComponent implements AfterViewInit, OnDestroy {
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.renderer.setClearColor(0x000000, 0);
 
-    // Initialisation de la scène
     this.scene = new THREE.Scene();
 
-    // Configuration de la caméra avec zoom rapproché
-    this.camera = new THREE.PerspectiveCamera(
-      45,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      1000
-    );
-    this.camera.position.set(50, 50, 50); // Position initiale plus proche
+    // Position caméra augmentée
+    this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+    this.camera.position.set(400, 400, 400);
 
-    // Configuration des contrôles orbitaux
-    this.controls = new OrbitControls(this.camera, this.renderer.domElement);
-    this.controls.enableDamping = true;
-    this.controls.dampingFactor = 0.05;
-    this.controls.target.set(0, 0, 0);
-    this.controls.update();
-
-    // Éclairage amélioré
-    const ambientLight = new THREE.AmbientLight(0xffffff, 2);
-    this.scene.add(ambientLight);
-
+    // Éclairage
+    this.scene.add(new THREE.AmbientLight(0xffffff, 2));
     const directionalLight = new THREE.DirectionalLight(0xffffff, 3);
     directionalLight.position.set(50, 100, 50);
     this.scene.add(directionalLight);
   }
 
   private loadSTLModel(): void {
-    const loader = new STLLoader();
-    loader.load(
+    new STLLoader().load(
       'assets/r4v3token.stl',
       (geometry) => {
-        // Matériau avec couleur dynamique
         const material = new THREE.MeshStandardMaterial({
           color: new THREE.Color().setHSL(this.colorHue, 1, 0.5),
           metalness: 0.5,
@@ -94,52 +75,99 @@ export class R4v3tokenComponent implements AfterViewInit, OnDestroy {
         });
 
         this.mesh = new THREE.Mesh(geometry, material);
-        this.mesh.scale.set(0.15, 0.15, 0.15); // Échelle augmentée
+        this.mesh.scale.set(0.15, 0.15, 0.15);
 
-        // Centrage automatique
         geometry.computeBoundingSphere();
         if (geometry.boundingSphere) {
-          this.mesh.position.set(
-            -geometry.boundingSphere.center.x,
-            -geometry.boundingSphere.center.y,
-            -geometry.boundingSphere.center.z
-          );
+          this.mesh.position.copy(geometry.boundingSphere.center.clone().multiplyScalar(-1));
         }
 
         this.scene.add(this.mesh);
-
-        // Ajustement automatique du zoom
-        const bbox = new THREE.Box3().setFromObject(this.mesh);
-        const center = bbox.getCenter(new THREE.Vector3());
-        const size = bbox.getSize(new THREE.Vector3());
-        const maxDim = Math.max(size.x, size.y, size.z);
-        this.camera.position.copy(center).add(new THREE.Vector3(1, 1, 1).multiplyScalar(maxDim * 1.2));
-        this.controls.target.copy(center);
-        this.controls.update();
+        this.adjustCamera();
       },
-      (xhr) => {
-        console.log(`Chargement : ${((xhr.loaded / xhr.total) * 100).toFixed(1)}%`);
-      },
-      (error) => {
-        console.error('Erreur de chargement :', error);
-      }
+      (xhr) => console.log(`Chargement : ${((xhr.loaded / xhr.total) * 100).toFixed(1)}%`),
+      (error) => console.error('Erreur de chargement :', error)
     );
+  }
+
+  private adjustCamera(): void {
+    if (!this.mesh) return;
+
+    const bbox = new THREE.Box3().setFromObject(this.mesh);
+    const center = bbox.getCenter(new THREE.Vector3());
+    const size = bbox.getSize(new THREE.Vector3());
+    const maxDim = Math.max(size.x, size.y, size.z);
+    
+    // Multiplicateur augmenté
+    this.camera.position.copy(center).add(new THREE.Vector3(1, 1, 1).multiplyScalar(maxDim * 6));
+    this.camera.lookAt(center);
+  }
+
+  private initParticleSystem(): void {
+    const particleCount = 2000;
+    const particles = new THREE.BufferGeometry();
+    const posArray = new Float32Array(particleCount * 3);
+
+    for (let i = 0; i < particleCount * 3; i++) {
+      posArray[i] = (Math.random() - 0.5) * 10;
+    }
+
+    particles.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+    
+    const particleMaterial = new THREE.PointsMaterial({
+      size: 0.02,
+      color: 0xffffff,
+      transparent: true,
+      blending: THREE.AdditiveBlending
+    });
+
+    this.particleSystem = new THREE.Points(particles, particleMaterial);
+    this.scene.add(this.particleSystem);
+  }
+
+  private setupEventListeners(): void {
+    window.addEventListener('resize', this.onWindowResize);
+    
+    this.canvasRef.nativeElement.addEventListener('mousemove', (e) => {
+      this.mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+      this.mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+    });
+
+    this.canvasRef.nativeElement.addEventListener('mouseenter', () => this.isHovered = true);
+    this.canvasRef.nativeElement.addEventListener('mouseleave', () => this.isHovered = false);
   }
 
   private animate = () => {
     this.animationId = requestAnimationFrame(this.animate);
 
+    this.colorHue = (this.colorHue + 0.005) % 1;
+    
     if (this.mesh) {
-      // Rotation automatique
-      this.mesh.rotation.y += 0.01;
-
-      // Transition de couleur continue
-      this.colorHue += 0.005;
-      if (this.colorHue > 1) this.colorHue = 0;
       (this.mesh.material as THREE.MeshStandardMaterial).color.setHSL(this.colorHue, 1, 0.5);
+      
+      this.mesh.rotation.y += 0.01 + (this.mouseX * 0.02);
+      this.mesh.rotation.x += this.mouseY * 0.01;
+
+      const targetScale = this.isHovered ? 1.1 : 1;
+      this.mesh.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.1);
     }
 
-    this.controls.update();
+    const positions = this.particleSystem.geometry.attributes['position'].array as Float32Array;
+    const time = Date.now() * 0.001;
+    
+    for (let i = 0; i < positions.length; i += 3) {
+      positions[i] += Math.sin(time + positions[i]) * 0.002;
+      positions[i + 1] += Math.cos(time + positions[i + 1]) * 0.002;
+      positions[i + 2] += Math.sin(time + positions[i + 2]) * 0.002;
+    }
+    
+    this.particleSystem.geometry.attributes['position'].needsUpdate = true;
+    (this.particleSystem.material as THREE.PointsMaterial).color.setHSL(
+      (this.colorHue + 0.3) % 1, 
+      0.8, 
+      0.6
+    );
+
     this.renderer.render(this.scene, this.camera);
   };
 
@@ -148,4 +176,10 @@ export class R4v3tokenComponent implements AfterViewInit, OnDestroy {
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(window.innerWidth, window.innerHeight);
   };
+
+  private cleanup(): void {
+    window.removeEventListener('resize', this.onWindowResize);
+    if (this.animationId) cancelAnimationFrame(this.animationId);
+    this.renderer.dispose();
+  }
 }
