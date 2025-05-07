@@ -1,0 +1,23 @@
+<div class="explorateur-container"
+     [@slideInOut]="{ value: isCollapsed ? 'collapsed' : 'expanded', params: {} }"
+     (mouseenter)="onMouseEnter()"
+     (mouseleave)="onMouseLeave()"
+     (click)="toggleCollapse()">
+     
+  <div class="explorateur-title">EXPLORATEUR</div>
+  
+  <form class="explorateur-form" (submit)="checkHash()">
+    <input
+      type="text"
+      class="explorateur-input"
+      [(ngModel)]="searchHash"
+      name="searchHash"
+      placeholder="Entrez un hash..."
+    >
+    <button type="submit" class="explorateur-btn">Vérifier</button>
+  </form>
+
+  <div *ngIf="result" class="explorateur-result">
+    {{ result }}
+  </div>
+</div>

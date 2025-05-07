@@ -1,0 +1,42 @@
+<nav class="navbar">
+    <div class="navbar-brand">
+      R4V3chainz
+    </div>
+    
+    <div class="navbar-actions">
+      <button 
+        class="modal-btn" 
+        (click)="openModal()"
+        (mouseover)="onMouseOver()"
+        (mouseout)="onMouseOut()">
+        Ouvrir Modal
+      </button>
+    </div>
+  
+    <!-- Modal intégrée -->
+    <div class="modal-overlay" *ngIf="isModalOpen" (click)="closeModal()">
+      <div class="modal-container" 
+           (click)="$event.stopPropagation()" 
+           role="dialog" 
+           aria-labelledby="modal-title" 
+           aria-modal="true">
+        <div class="modal-header">
+          <h2 id="modal-title">Titre de la Modal</h2>
+          <button class="modal-close" 
+                  (click)="closeModal()" 
+                  aria-label="Fermer">
+            &times;
+          </button>
+        </div>
+        
+        <div class="modal-content">
+          <p>Contenu personnalisé ici...</p>
+        </div>
+        
+        <div class="modal-footer">
+          <button class="modal-button" (click)="closeModal()">Fermer</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+  

@@ -1,0 +1,164 @@
+/* ------------------- */
+/* Styles du Footer */
+/* ------------------- */
+.footer-content {
+    background: linear-gradient(90deg, #181a20 70%, #1e005a 100%);
+    color: #fff;
+    font-family: 'Orbitron', 'Inter', 'monospace', sans-serif;
+    width: 100%;
+    padding: 0.6rem 0;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 0 16px #a600ff55, 0 0 8px #00f0ff33;
+    border-top: 1.5px solid #a600ff;
+    z-index: 1000;
+  }
+  
+  
+  .footer-main {
+    max-width: 800px;
+    width: 100%;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  
+  .footer-links a {
+    color: #00f0ff;
+    margin: 0 0.8rem;
+    text-decoration: none;
+    transition: color 0.2s;
+    font-size: 0.9rem;
+  }
+  
+  .footer-links a:hover {
+    color: #a600ff;
+  }
+  
+  /* ---------------------------- */
+  /* Styles du Donate-News Container */
+  /* ---------------------------- */
+  .donate-news-container {
+    background: linear-gradient(90deg, #181a20 70%, #1e005a 100%);
+    border-radius: 12px;
+    box-shadow: 0 0 16px #a600ff55, 0 0 8px #00f0ff33;
+    border: 1.5px solid #a600ff;
+    padding: 1.2rem 1.3rem;
+    color: #fff;
+    font-family: 'Orbitron', 'Inter', 'monospace', sans-serif;
+    min-width: 220px;
+    max-width: 360px;
+    margin-bottom: 1.2rem;
+    animation: cyberGlow 2s infinite alternate;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  
+  /* Animations partagées */
+  @keyframes cyberGlow {
+    0% { box-shadow: 0 0 12px #a600ff55, 0 0 8px #00f0ff33; }
+    100% { box-shadow: 0 0 32px #a600ff99, 0 0 16px #00f0ff77; }
+  }
+  
+  @keyframes fadeOut {
+    0% { opacity: 1;}
+    100% { opacity: 0;}
+  }
+  
+  /* Styles spécifiques au Donate Section */
+  .donate-section, .news-section {
+    margin-bottom: 0.5rem;
+  }
+  
+  .donate-title, .news-title {
+    font-size: 1.07rem;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    color: #fff;
+    text-shadow: 0 0 8px #a600ff, 0 0 12px #00f0ff, 0 0 2px #fff;
+    border-bottom: 1px solid #a600ff;
+    padding-bottom: 0.2rem;
+    margin-bottom: 0.4rem;
+  }
+  
+  .donate-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .donate-label {
+    color: #00f0ff;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-right: 0.3rem;
+    text-shadow: 0 0 4px #a600ff;
+  }
+  
+  .donate-address {
+    color: #a600ff;
+    font-family: 'Inter', 'monospace', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    background: #1e005a;
+    border-radius: 7px;
+    padding: 0.18rem 0.5rem;
+    box-shadow: 0 0 8px #a600ff44;
+  }
+  
+  .donate-copy-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-left: 0.1rem;
+    transition: color 0.2s, transform 0.1s;
+    text-shadow: 0 0 8px #a600ff, 0 0 4px #00f0ff;
+    outline: none;
+    padding: 0 0.2rem;
+  }
+  
+  .donate-copy-btn:hover, 
+  .donate-copy-btn:focus {
+    color: #a600ff;
+    transform: scale(1.2);
+  }
+  
+  .donate-copied {
+    color: #a600ff;
+    font-size: 0.93rem;
+    font-weight: bold;
+    margin-left: 0.3rem;
+    text-shadow: 0 0 6px #a600ff, 0 0 8px #fff;
+    animation: fadeOut 1.5s forwards;
+  }
+  
+  .donate-btn {
+    background: linear-gradient(90deg, #a600ff 0%, #00f0ff 100%);
+    color: #fff;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 12px #a600ff55, 0 0 8px #00f0ff33;
+    padding: 0.5rem 1.2rem;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+    text-shadow: 0 0 8px #a600ff, 0 0 4px #00f0ff;
+    outline: none;
+    margin-top: 0.2rem;
+  }
+  
+  .donate-btn:hover,
+  .donate-btn:focus {
+    background: linear-gradient(90deg, #00f0ff 0%, #a600ff 100%);
+    box-shadow: 0 0 32px #a600ff99, 0 0 16px #00f0ff77;
+    transform: scale(1.06);
+  }

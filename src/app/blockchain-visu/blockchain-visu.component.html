@@ -1,0 +1,61 @@
+<div class="cyber-tablet">
+  <div class="cyber-header">
+    <div class="flicker-text neon-vapor">R4V3CHAINZ TERMINAL v4.2.0</div>
+    <div class="system-status">
+      <span class="encryption-status neon-vapor">ENCRYPTION: ACTIVE</span>
+    </div>
+  </div>
+
+
+   <!-- Ajouter le bandeau ici -->
+   <app-bandeau-blockchain></app-bandeau-blockchain>
+
+
+   
+  <div class="cyber-nav-panel">
+    <button *ngFor="let view of views" class="nav-button" [class.active]="currentView === view.id" (click)="switchView(view.id)">
+      <span class="neon-vapor">{{view.label}}</span>
+    </button>
+  </div>
+  <div class="cyber-display">
+    <div class="terminal-overlay"></div>
+    <div [ngSwitch]="currentView">
+      <!-- Vue Blocs -->
+      <div *ngSwitchCase="'blocks'" class="block-container">
+        <div *ngFor="let block of blocks" class="data-cube">
+          <div class="cube-header neon-vapor">BLK#{{block.index}}</div>
+          <div class="cube-hash neon-vapor">{{block.hash | slice:0:8}}...{{block.hash | slice:-8}}</div>
+          <div class="cube-timestamp">{{block.time}}</div>
+        </div>
+      </div>
+      <!-- Vue Transactions -->
+      <div *ngSwitchCase="'transactions'" class="tx-stream">
+        <div *ngFor="let tx of transactions" class="tx-packet">
+          <div class="tx-info">
+            <div class="address-row">
+              <span class="from neon-vapor">{{tx.from | addressShort}}</span>
+              <span class="transfer-icon neon-vapor">➔</span>
+              <span class="to neon-vapor">{{tx.to | addressShort}}</span>
+            </div>
+            <div class="amount neon-vapor">{{tx.value}} R4V3</div>
+          </div>
+        </div>
+      </div>
+      <!-- Vue Balance -->
+      <div *ngSwitchCase="'balance'" class="wallet-hub">
+        <div class="holographic-card">
+          <div class="balance-main">
+            <div class="balance-figure neon-vapor">{{balance}}</div>
+            <div class="currency neon-vapor">R4V3</div>
+          </div>
+          <div class="wallet-address neon-vapor">{{publicKey | addressShort}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cyber-controls">
+    <button class="control-btn" (click)="mineBlock()"><span class="neon-vapor">MINE BLOCK</span></button>
+    <button class="control-btn" (click)="syncBlockchain()"><span class="neon-vapor">SYNC</span></button>
+    <button class="control-btn" (click)="sendTransaction()"><span class="neon-vapor">SEND TX</span></button>
+  </div>
+</div>

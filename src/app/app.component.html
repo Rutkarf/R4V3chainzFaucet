@@ -1,0 +1,62 @@
+<div class="app-content">
+  <app-particles-background></app-particles-background>
+  <app-r4v3token></app-r4v3token>
+
+  <!-- Navbar avec gestion d'événements -->
+  <app-navbar 
+    (parrainageModalOpened)="handleParrainageModalOpen()"
+    (connexionModalOpened)="handleConnexionModalOpen()"
+    (registerModalOpened)="handleRegisterModalOpen()">
+  </app-navbar>
+
+  <!-- Modales -->
+  <app-parrainage-modal 
+    *ngIf="showParrainageModal"
+    (closed)="handleModalClose()">
+    <h2>Parrainage</h2>
+    <p>Contenu de la modal de parrainage</p>
+  </app-parrainage-modal>
+
+  <app-connexion-modal 
+    *ngIf="showConnexionModal"
+    (closed)="handleModalClose()">
+    <h2>Connexion</h2>
+    <p>Contenu de la modal de connexion</p>
+  </app-connexion-modal>
+
+  <app-register-modal 
+    *ngIf="showRegisterModal"
+    (closed)="handleModalClose()">
+    <h2>Register</h2>
+    <p>Contenu de la modal d'inscription</p>
+  </app-register-modal>
+
+  <app-bandeau-accueil></app-bandeau-accueil>
+
+  <div class="main-layout">
+    <!-- Colonne Gauche -->
+    <div class="left-column">
+      <div class="left-column-container">
+        <app-statut></app-statut>
+        <app-pair></app-pair>
+        <app-statistiques></app-statistiques>
+        <app-explorateur></app-explorateur>
+      </div>
+    </div>
+
+    <!-- Colonne Centrale -->
+    <div class="center-column">
+      <app-blockchain-visu></app-blockchain-visu>
+    </div>
+
+    <!-- Colonne Droite -->
+    <div class="right-column">
+      <div class="right-column-container">
+        <app-news></app-news>
+        <app-chat></app-chat>
+      </div>
+    </div>
+  </div>
+  
+  <app-footer></app-footer>
+</div>

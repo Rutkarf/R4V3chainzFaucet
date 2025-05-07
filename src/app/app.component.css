@@ -1,0 +1,195 @@
+.app-content {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Empêche le scroll sur la page entière */
+}
+
+/* Styles pour la navbar */
+app-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  z-index: 2000;
+  height: 2vh;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Styles pour le bandeau d'accueil */
+app-bandeau-accueil {
+  position: fixed;
+  top: 5vh; /* Exactement sous la navbar */
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: 2vh; /* Réduit encore plus */
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+/* Styles pour le footer */
+app-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: 4vh; /* Réduit encore plus */
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* Layout principal */
+.main-layout {
+  position: fixed;
+  top: 7vh; /* Navbar (4vh) + Bandeau (2vh) */
+  left: 0;
+  right: 0;
+  height: 91vh; /* 100vh - 6vh - 3vh */
+  display: flex;
+  overflow: hidden;
+}
+
+.left-column {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem; /* Réduit encore plus */
+  padding: 0.3rem 0 0.3rem 8px; /* Réduit encore plus */
+  z-index: 1000;
+}
+
+.center-column {
+  width: 55%;
+  height: 100%;
+  padding: 0.3rem; /* Réduit encore plus */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  z-index: 1000;
+}
+
+.right-column {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.6rem; /* Réduit encore plus */
+  padding: 0.3rem 8px 0.3rem 0; /* Réduit encore plus */
+  z-index: 1000;
+}
+
+.left-column-container,
+.right-column-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Réduit encore plus */
+  height: 100%;
+}
+
+/* Animation slide pour tous les enfants */
+.left-column-container > * {
+  transition: transform 0.3s cubic-bezier(0.68,-0.55,0.27,1.55);
+  transform: translateX(-70%); /* Réduit de -85% à -70% pour plus de visibilité */
+  will-change: transform;
+  height: auto;
+  opacity: 1;
+  border-right: 2px solid #002fff;
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+  position: relative;
+  overflow: visible;
+  padding: 0.5rem;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.8);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  margin-left: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+/* Slide au survol ou expanded */
+.left-column-container > *:hover,
+.left-column-container > *.expanded {
+  transform: translateX(0);
+  z-index: 10;
+  opacity: 1;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+}
+
+/* Animation slide pour tous les enfants */
+.right-column-container > * {
+  transition: transform 0.3s cubic-bezier(0.68,-0.55,0.27,1.55);
+  transform: translateX(70%); /* Réduit de 85% à 70% pour plus de visibilité */
+  will-change: transform;
+  height: auto;
+  opacity: 1;
+  border-left: 2px solid #0051ff;
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+  position: relative;
+  overflow: visible;
+  padding: 0.5rem;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.8);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  margin-right: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+/* Slide au survol ou expanded */
+.right-column-container > *:hover,
+.right-column-container > *.expanded {
+  transform: translateX(0);
+  z-index: 10;
+  opacity: 1;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .main-layout {
+    flex-direction: column;
+    height: auto;
+    overflow-y: auto;
+  }
+
+  .left-column,
+  .center-column,
+  .right-column {
+    width: 100%;
+    height: auto;
+    padding: 0;
+    gap: 0.3rem;
+  }
+
+  .left-column-container,
+  .right-column-container {
+    gap: 0.3rem;
+  }
+
+  .left-column-container > *,
+  .right-column-container > * {
+    transform: none !important;
+    width: 95%;
+    margin: 0.15rem auto !important;
+  }
+}
+

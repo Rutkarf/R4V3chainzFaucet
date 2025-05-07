@@ -1,0 +1,28 @@
+<div class="cyber-journal-bg">
+  <div class="cyber-journal-container">
+    <div class="cyber-journal-header">
+      <span class="cyber-journal-title">Annoucement</span>
+    </div>
+    <div class="cyber-journal-carousel">
+      <button class="cyber-nav-btn left" (click)="prev()">❮</button>
+      <div class="cyber-journal-slide" *ngFor="let n of news; let i = index" [class.active]="i === currentIndex">
+        <div class="cyber-card">
+          <div class="cyber-card-date">
+            <span class="cyber-date-icon">📅</span> {{ n.date }}
+          </div>
+          <div class="cyber-card-content">
+            <span class="cyber-card-bullet">✦</span>
+            <span class="cyber-card-msg">{{ n.message }}</span>
+          </div>
+        </div>
+      </div>
+      <button class="cyber-nav-btn right" (click)="next()">❯</button>
+    </div>
+    <div class="cyber-journal-pagination">
+      <span *ngFor="let n of news; let i = index" 
+            [class.active]="i === currentIndex"
+            (click)="goToSlide(i)"></span>
+    </div>
+  </div>
+  
+</div>
