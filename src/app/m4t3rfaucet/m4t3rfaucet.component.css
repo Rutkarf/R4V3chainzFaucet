@@ -1,0 +1,120 @@
+/* === Effet Matrix en fond === */
+@keyframes matrixFlow {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+  }
+  
+  /* === Flicker uniquement sur la valeur === */
+  @keyframes flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+      opacity: 1;
+      text-shadow: 0 0 8px #00ddff, 0 0 15px #00ddff;
+    }
+    20%, 22%, 24%, 55% {
+      opacity: 0.6;
+      text-shadow: 0 0 4px #0099cc, 0 0 8px #0099cc;
+    }
+  }
+  
+  /* === Animation glitch léger texte === */
+  @keyframes textGlitch {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-1px); }
+    50% { transform: translateX(1px); }
+    75% { transform: translateX(-1px); }
+  }
+  
+  /* === Animation laser scan === */
+  @keyframes laserScan {
+    to { left: 200%; }
+  }
+  
+  /* === Conteneur principal === */
+  .navbar-faucet {
+    height: 3vh;
+    min-height: 3vh;
+    display: flex;
+    align-items: center;
+    padding: 0 0.5rem;
+    border: 2px solid #00aeff;
+    background: 
+      linear-gradient(145deg, #1a1a1a 0%, #0a0a0a 100%),
+      repeating-linear-gradient(45deg, transparent 0 2px, rgba(0, 174, 255, 0.1) 2px 4px);
+    border-radius: 3px;
+    gap: 0.5rem;
+    position: relative;
+    animation: matrixFlow 12s linear infinite;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 174, 255, 0.5);
+  }
+  
+  /* === Valeur du faucet (texte) === */
+  .faucet-value {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #00ddff;
+    letter-spacing: 2px;
+    margin-right: 1rem;
+    padding: 0 0.3rem;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 2px;
+    animation: flicker 3s infinite, textGlitch 3s infinite alternate;
+    line-height: 3vh;
+    user-select: none;
+    white-space: nowrap;
+  }
+  
+  /* === Bouton CLAIM stylé cyberpunk === */
+  .cyber-btn {
+    background: linear-gradient(45deg, #8c00ff 0%, #ff8c00 100%);
+    border: none;
+    padding: 0.3rem 0.8rem;
+    color: #000;
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+    position: relative;
+    border: 1px solid #ffd700;
+    line-height: 3vh;
+    font-size: 0.9rem;
+    user-select: none;
+    box-shadow: 0 0 8px #ffd700;
+  }
+  
+  /* === Hover bouton === */
+  .cyber-btn:hover {
+    box-shadow: 
+      0 0 20px rgba(255, 215, 0, 0.9),
+      inset 0 0 10px rgba(255, 140, 0, 0.7);
+    transform: translateY(-2px);
+  }
+  
+  /* === Active bouton === */
+  .cyber-btn:active {
+    transform: translateY(1px);
+    filter: brightness(1.2);
+  }
+  
+  /* === Effet scanline subtile === */
+  .navbar-faucet::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -200%;
+    width: 300%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      rgba(0,255,255,0) 0%,
+      rgba(0,255,255,0.05) 50%,
+      rgba(0,255,255,0) 100%
+    );
+    animation: laserScan 4s linear infinite;
+    mix-blend-mode: screen;
+    pointer-events: none;
+  }
+  

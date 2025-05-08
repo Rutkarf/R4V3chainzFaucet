@@ -4,7 +4,6 @@ import { R4v3tokenComponent } from './r4v3token/r4v3token.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ParrainageModalComponent } from './modals/parrainage-modal/parrainage-modal.component';
 import { ConnexionModalComponent } from './modals/connexion-modal/connexion-modal.component';
-import { RegisterModalComponent } from './modals/register-modal/register-modal.component';
 import { BandeauAccueilComponent } from "./bandeau-accueil/bandeau-accueil.component";
 import { ChatComponent } from "./chat/chat.component";
 import { NewsComponent } from './news/news.component';
@@ -24,8 +23,7 @@ import { FooterComponent } from './footer/footer.component';
     R4v3tokenComponent,
     NavbarComponent,
     ParrainageModalComponent,
-  ConnexionModalComponent,
-  RegisterModalComponent,
+    ConnexionModalComponent,
     BandeauAccueilComponent,
     ChatComponent,
     NewsComponent,
@@ -36,7 +34,7 @@ import { FooterComponent } from './footer/footer.component';
     ParticlesBackgroundComponent,
     BlockchainVisuComponent,
     FooterComponent
-  ],
+],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

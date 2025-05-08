@@ -1,10 +1,11 @@
 import { Component, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { M4t3rfaucetComponent} from '../m4t3rfaucet/m4t3rfaucet.component';
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, 
+            M4t3rfaucetComponent],  // Correction de la syntaxe ici
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
@@ -12,41 +13,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
   @Output() parrainageModalOpened = new EventEmitter<void>();
   @Output() connexionModalOpened = new EventEmitter<void>();
 
-  faucetValue = 0;
-  private intervalId: any;
-
   ngOnInit() {
-    this.startIncrement(); // Démarrage automatique au chargement
+    console.log('NavbarComponent ngOnInit called');
   }
 
   ngOnDestroy() {
-    this.stopIncrement();
-  }
-
-  private startIncrement() {
-    if (!this.intervalId) {
-      this.intervalId = setInterval(() => {
-        this.faucetValue += 1;
-      }, 1);
-    }
-  }
-
-  claimFaucet() {
-    this.startIncrement(); // Conserve la fonctionnalité du bouton
-  }
-
-  formatFaucetValue(value: number): string {
-    return value.toString()
-      .replace(/\B(?=(\d{3})+(?!\d))/g, '.')
-      .padStart(16, '0')
-      .replace(/(\d{3})(?=\d)/g, '$1.');
-  }
-
-  private stopIncrement() {
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-      this.intervalId = null;
-    }
+    // Pas d'action spécifique à faire ici pour le moment
   }
 
   goHome() {
