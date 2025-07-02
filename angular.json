@@ -28,7 +28,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "2mb",
-                  "maximumError": "5mb" // Corrigé (minuscules)
+                  "maximumError": "5mb" 
                 },
                 {
                   "type": "anyComponentStyle",
@@ -37,8 +37,8 @@
                 }
               ],
               "outputHashing": "all",
-              "optimization": { // Ajouté
-                "fonts": false // Désactive l'inlining des polices
+              "optimization": { 
+                "fonts": false 
               }
             },
             "development": {
