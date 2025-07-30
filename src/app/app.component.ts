@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 import { R4v3tokenComponent } from './r4v3token/r4v3token.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ParrainageModalComponent } from './modals/parrainage-modal/parrainage-modal.component';
@@ -34,16 +36,13 @@ import { FooterComponent } from './footer/footer.component';
     ParticlesBackgroundComponent,
     BlockchainVisuComponent,
     FooterComponent
-],
+  ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  showParrainageModal = false;
-  showConnexionModal = false;
-  showRegisterModal = false;
 
-  constructor() {
+  constructor(private modalService: NgbModal) {
     console.log('AppComponent constructor');
   }
 
@@ -51,25 +50,36 @@ export class AppComponent implements OnInit {
     console.log('AppComponent initialized');
   }
 
+  /**
+   * Ouvre la modal de parrainage via ng-bootstrap
+   */
   handleParrainageModalOpen() {
     console.log('Ouverture de la modal parrainage');
-    this.showParrainageModal = true;
+    this.modalService.open(ParrainageModalComponent);
   }
 
+  /**
+   * Ouvre la modal de connexion via ng-bootstrap
+   */
   handleConnexionModalOpen() {
     console.log('Ouverture de la modal connexion');
-    this.showConnexionModal = true;
+    this.modalService.open(ConnexionModalComponent);
   }
 
+  /**
+   * Ouvre la modal d'inscription (à adapter selon ton implémentation)
+   */
   handleRegisterModalOpen() {
     console.log('Ouverture de la modal register');
-    this.showRegisterModal = true;
+    // À adapter : si tu as une modal d'inscription, ouvre-la ici via NgbModal
+    // this.modalService.open(RegisterModalComponent);
   }
 
+  /**
+   * Callback pour fermer les modales custom (si jamais tu en utilises en dehors de ng-bootstrap)
+   */
   handleModalClose() {
     console.log('Fermeture de la modal');
-    this.showParrainageModal = false;
-    this.showConnexionModal = false;
-    this.showRegisterModal = false;
+    // Rien à faire ici si tu utilises exclusivement NgbModal
   }
 }

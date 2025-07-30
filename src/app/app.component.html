@@ -9,20 +9,8 @@
     (registerModalOpened)="handleRegisterModalOpen()">
   </app-navbar>
 
-  <!-- Modales -->
-  <app-parrainage-modal 
-    *ngIf="showParrainageModal"
-    (closed)="handleModalClose()">
-    <h2>Parrainage</h2>
-    <p>Contenu de la modal de parrainage</p>
-  </app-parrainage-modal>
-
-  <app-connexion-modal 
-    *ngIf="showConnexionModal"
-    (closed)="handleModalClose()">
-    <h2>Connexion</h2>
-    <p>Contenu de la modal de connexion</p>
-  </app-connexion-modal>
+  <!-- Les modales ng-bootstrap sont ouvertes via le service NgbModal dans le TypeScript,
+       donc il ne faut PAS les déclarer ici avec *ngIf -->
 
   <app-bandeau-accueil></app-bandeau-accueil>
 
